@@ -58,12 +58,28 @@ public class AccountController {
 
 
         // TODO バリデーションチェック、パスワード一致チェック実装
+        // バリデーションチェック
+        boolean IsMailVaild = email.matches("^([a-zA-Z0-9])+([a-zA-Z0-9\\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\\._-]+)+$");
+        boolean IsPWVaild = password.matches("^[A-Za-z0-9]+$");
+        boolean IsPWForCheckVaild = passwordForCheck.matches("^[A-Za-z0-9]+$");
+
+        if (!IsMailVaild || !IsPWVaild || !IsPWForCheckVaild) {
+            model.addAttribute("errorLetter", "メールアドレス、パスワードは半角英数字を使用してください");
+            return "createAccount";
+        }
+
+        boolean matchPWandPWcheck = password.equals(passwordForCheck);
+        if (!matchPWandPWcheck) { //パスワード一致チェック実装
+            model.addAttribute("errorPW", "パスワードが一致していません");
+            return "createAccount";
+        }
 
         userInfo.setPassword(password);
         usersService.registUser(userInfo);
 
-        model.addAttribute("bookList", booksService.getBookList());
+        model.addAttribute("bookList", booksService.getBookList()); //booksService.getBookListをbookListの変数に入れた
         return "home";
     }
+
 
 }
