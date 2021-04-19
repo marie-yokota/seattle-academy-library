@@ -18,7 +18,7 @@
     <div class="wrapper">
         <main>
             <div class="authorization_head">
-            	<img class="mark" src="resources/img/logo.png" />
+                <img class="mark" src="resources/img/logo.png" />
                 <div class="logo">Seattle Library</div>
             </div>
             <div class="authorization">
@@ -33,10 +33,10 @@
                         <input type="password" class="input" id="passwordForCheck" name="passwordForCheck" required>
                         <input type="submit" class="button primary" value="作成する" >
                         <c:if test="${!empty errorLetter}">
-                         <div class="error">${errorLetter}</div>
+                            <div class="error">${errorLetter}</div>
                         </c:if>
                         <c:if test="${!empty errorPW}">
-                         <div class="error">${errorPW}</div>
+                            <div class="error">${errorPW}</div>
                         </c:if>
                         
                     </form>
@@ -44,8 +44,8 @@
                 <div class="authorization_navi">
                     <label class="authorization_text">すでにアカウントをお持ちですか？</label>
                     <form method="get" action="<%=request.getContextPath()%>/">
-                     <a class="authorization_link marker" href="javascript:void(0)" onclick="this.parentNode.submit()">ログイン</a>
-                     </form>
+                         <a class="authorization_link marker" href="javascript:void(0)" onclick="this.parentNode.submit()">ログイン</a>
+                    </form>
                 </div>
             </div>
         </main>
