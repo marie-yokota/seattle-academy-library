@@ -47,7 +47,6 @@ public class LoginController {
 
         // TODO 下記のコメントアウトを外してサービスクラスを使用してください。
         UserInfo selectedUserInfo = usersService.selectUserInfo(email, password);
-        //kain 
         // TODO パスワードとメールアドレスの組み合わせ存在チェック実装
         if (selectedUserInfo == null) {
             model.addAttribute("errorMessage", "パスワードとメールアドレスが一致していません");
