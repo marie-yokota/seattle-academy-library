@@ -32,8 +32,10 @@ public class BooksService {
     public List<BookInfo> getBookList() {
 
         // TODO 取得したい情報を取得するようにSQLを修正
+        //取得したい情報は、書籍ID、書籍名と著者名、出版社名、出版日、サムネイル画像
+        //書籍IDはデータ上にIDで管理しているから必要になる
         List<BookInfo> getedBookList = jdbcTemplate.query(
-                "select * from books ORDER BY TITLE ASC",
+                "SELECT id ,title ,author ,publisher, publish_date, thumbnail_url FROM books ORDER BY title ASC",
                 new BookInfoRowMapper());
 
         return getedBookList;
