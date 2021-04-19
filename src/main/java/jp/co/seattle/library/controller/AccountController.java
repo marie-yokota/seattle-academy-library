@@ -59,11 +59,11 @@ public class AccountController {
 
         // TODO バリデーションチェック、パスワード一致チェック実装
         // バリデーションチェック
-        boolean IsMailVaild = email.matches("^([a-zA-Z0-9])+([a-zA-Z0-9\\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\\._-]+)+$");
-        boolean IsPWVaild = password.matches("^[A-Za-z0-9]+$");
-        boolean IsPWForCheckVaild = passwordForCheck.matches("^[A-Za-z0-9]+$");
+        boolean isMailVaild = email.matches("^([a-zA-Z0-9])+([a-zA-Z0-9\\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\\._-]+)+$");
+        boolean isPWVaild = password.matches("^[A-Za-z0-9]+$");
+        boolean isPWForCheckVaild = passwordForCheck.matches("^[A-Za-z0-9]+$");
 
-        if (!IsMailVaild || !IsPWVaild || !IsPWForCheckVaild) {
+        if (!isMailVaild || !isPWVaild || !isPWForCheckVaild) {
             model.addAttribute("errorLetter", "メールアドレス、パスワードは半角英数字を使用してください");
             return "createAccount";
         }
