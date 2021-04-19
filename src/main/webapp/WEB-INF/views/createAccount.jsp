@@ -33,10 +33,10 @@
                         <input type="password" class="input" id="passwordForCheck" name="passwordForCheck" required>
                         <input type="submit" class="button primary" value="作成する" >
                         <c:if test="${!empty errorLetter}">
-                            <div class="error">${errorLetter}</div>
+                          <div class="error">${errorLetter}</div>
                         </c:if>
                         <c:if test="${!empty errorPW}">
-                            <div class="error">${errorPW}</div>
+                          <div class="error">${errorPW}</div>
                         </c:if>
                         
                     </form>
@@ -44,7 +44,7 @@
                 <div class="authorization_navi">
                     <label class="authorization_text">すでにアカウントをお持ちですか？</label>
                     <form method="get" action="<%=request.getContextPath()%>/">
-                         <a class="authorization_link marker" href="javascript:void(0)" onclick="this.parentNode.submit()">ログイン</a>
+                      <a class="authorization_link marker" href="javascript:void(0)" onclick="this.parentNode.submit()">ログイン</a>
                     </form>
                 </div>
             </div>
