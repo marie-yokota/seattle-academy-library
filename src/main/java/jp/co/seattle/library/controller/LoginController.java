@@ -1,5 +1,4 @@
 package jp.co.seattle.library.controller;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +14,8 @@ import jp.co.seattle.library.service.UsersService;
 
 
 /**
- * ログインコントローラー
- */
+* ログインコントローラー
+*/
 @Controller /** APIの入り口 */
 public class LoginController {
     final static Logger logger = LoggerFactory.getLogger(LoginController.class);
