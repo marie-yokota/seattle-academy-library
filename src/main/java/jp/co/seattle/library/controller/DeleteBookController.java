@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import jp.co.seattle.library.dto.BookDetailsInfo;
 import jp.co.seattle.library.service.BooksService;
 
 /**
@@ -42,9 +41,6 @@ public class DeleteBookController {
             Model model) {
         logger.info("Welcome delete! The client locale is {}.", locale);
 
-        // パラメータで受け取った書籍情報をDtoに格納する。
-        BookDetailsInfo bookInfo = new BookDetailsInfo();
-        bookInfo.setBookId(bookId);
 
         //削除メソッドを使用する
         booksService.deleteBook(bookId);
