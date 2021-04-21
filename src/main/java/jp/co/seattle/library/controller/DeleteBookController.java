@@ -46,15 +46,11 @@ public class DeleteBookController {
         BookDetailsInfo bookInfo = new BookDetailsInfo();
         bookInfo.setBookId(bookId);
 
-        //サービスクラスを利用する
-        // BookDetailsInfo bookDetailsInfo = BooksService.bookDetailsInfo(bookId);
-
         //削除メソッドを使用する
         booksService.deleteBook(bookId);
-        model.addAttribute("bookList", booksService.getBookList());
 
         //新しい書籍リストを取得する
-        //model.addAttribute("bookList", booksService.getBookList());
+        model.addAttribute("bookList", booksService.getBookList());
 
         //ホーム画面に遷移する
         return "home";
