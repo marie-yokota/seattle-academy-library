@@ -63,7 +63,7 @@
                  </div>
             </div>
             <div class="edtDelBookBtn_box">
-                <form method="post" action="deleteBook">
+                <form method="post" action="<%=request.getContextPath()%>/deleteBook">
                     <button type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_deleteBook" >削除</button>
                 </form>
             </div>
