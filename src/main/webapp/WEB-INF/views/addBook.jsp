@@ -38,7 +38,7 @@
     </header>
       
     <main>
-        <form action="<%=request.getContextPath()%>/insertBook"  method="post" enctype="multipart/form-data" id="data_upload_form">
+        <form action="<%=request.getContextPath()%>/insertBook" method="post" enctype="multipart/form-data" id="data_upload_form">
             <h1>書籍の追加</h1>
             <div class="content_body add_book_content">
                 <div>
@@ -60,7 +60,7 @@
                     </div>
                     <div>
                         <span>著者名</span><span class="care care2">必須</span>
-                        <c:if test="${!empty bookInfo}">                       
+                        <c:if test="${!empty bookInfo}">
                             <input type="text" name="author" value="${bookInfo.author}">
                         </c:if>
                         <c:if test="${empty bookInfo}">
@@ -69,7 +69,7 @@
                     </div>
                     <div>
                         <span>出版社</span><span class="care care2">必須</span>
-                        <c:if test="${!empty bookInfo}">                     
+                        <c:if test="${!empty bookInfo}">
                             <input type="text" name="publisher" value="${bookInfo.publisher}">
                         </c:if>
                         <c:if test="${empty bookInfo}">
@@ -86,12 +86,12 @@
                         </c:if>
                         <c:if test="${!empty errorPublishDate}">
                             <div class="error">${errorPublishDate}</div>
-                        </c:if>                          
-                    </div>         
+                        </c:if>
+                    </div>
                     <div>
                         <span>ISBN</span>
                         <c:if test="${!empty bookInfo}">
-                            <input type="text" name="isbn" value="${bookInfo.isbn}">                            
+                            <input type="text" name="isbn" value="${bookInfo.isbn}">
                         </c:if>
                         <c:if test="${empty bookInfo}">
                             <input type="text" name="isbn">
@@ -101,7 +101,7 @@
                         </c:if>
                         <c:if test="${!empty errorInput}">
                             <div class="error">${errorInput}</div>
-                        </c:if>                         
+                        </c:if>
                     </div>
                     <div>
                         <span>書籍説明</span>
@@ -116,7 +116,7 @@
                 </div>
             </div>
             <div class="addBookBtn_box">
-                    <button type="submit" id="add-btn" class="btn_addBook">登録</button>
+                <button type="submit" id="add-btn" class="btn_addBook">登録</button>
             </div>
         </form>
     </main>

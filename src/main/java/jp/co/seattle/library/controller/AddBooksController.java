@@ -32,7 +32,7 @@ public class AddBooksController {
     @Autowired
     private ThumbnailService thumbnailService;
 
-    @RequestMapping(value = "/addBook", method = RequestMethod.GET) 
+    @RequestMapping(value = "/addBook", method = RequestMethod.GET)
     //value＝actionで指定したパラメータ
     //RequestParamでname属性を取得
     public String login(Model model) {
@@ -101,13 +101,13 @@ public class AddBooksController {
 
         //著者名のバリデーションチェック(必須項目である)
         boolean isAuthorVaild = (author.isEmpty());
-        
+
         //出版社のバリデーションチェック(必須項目である)
         boolean isPublisherVaild = (publisher.isEmpty());
-        
+
         //出版日が半角数字YYYYMMDD形式であるか確認
         boolean isPublishDateVaild = (publishDate.isEmpty());
-        
+
         if (isTitleVaild || isAuthorVaild || isPublisherVaild || isPublishDateVaild) {
             model.addAttribute("errorInput", "必須項目は全て入力してください");
             return "addBook";
@@ -129,7 +129,7 @@ public class AddBooksController {
                 model.addAttribute("errorIsbn", "ISBNは10桁または13桁で入力してください");
                 return "addBook";
             }
-            }
+        }
 
         // 書籍情報を新規登録する
         booksService.registBook(bookInfo);
@@ -137,7 +137,7 @@ public class AddBooksController {
         //     model.addAttribute("resultMessage", "登録完了");
 
         //登録した書籍の詳細情報を表示するように実装
-        
+
         int bookId = booksService.getBookId();
 
         model.addAttribute("bookDetailsInfo", booksService.getBookInfo(bookId));

@@ -30,7 +30,6 @@ public class BookDetailsInfo {
 
     private String isbn;
 
-
     public BookDetailsInfo() {
 
     }

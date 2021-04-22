@@ -61,7 +61,7 @@ public class BooksService {
     /**
      * 書籍IDを取得する
      * 
-     * @param bookInfo
+     * 
      * @return bookId
      */
     public int getBookId() {
@@ -69,8 +69,6 @@ public class BooksService {
         int bookId = jdbcTemplate.queryForObject(sql, int.class);
         return bookId;
     }
-
-
 
     /**
      * 書籍を登録する
@@ -103,4 +101,3 @@ public class BooksService {
     }
 
 }
-
