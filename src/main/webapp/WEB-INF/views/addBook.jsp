@@ -53,7 +53,6 @@
                         <span>書籍名</span><span class="care care2">必須</span>
                         <c:if test="${!empty bookInfo}">
                             <input type="text" name="title" value="${bookInfo.title}">
-                            <p>${bookDetailsInfo.title}</p>
                         </c:if>
                         <c:if test="${empty bookInfo}">
                             <input type="text" name="title" autocomplete="off">
@@ -63,7 +62,6 @@
                         <span>著者名</span><span class="care care2">必須</span>
                         <c:if test="${!empty bookInfo}">                       
                             <input type="text" name="author" value="${bookInfo.author}">
-                            <p>${bookDetailsInfo.author}</p>
                         </c:if>
                         <c:if test="${empty bookInfo}">
                             <input type="text" name="author" autocomplete="off">
@@ -73,7 +71,6 @@
                         <span>出版社</span><span class="care care2">必須</span>
                         <c:if test="${!empty bookInfo}">                     
                             <input type="text" name="publisher" value="${bookInfo.publisher}">
-                            <p>${bookDetailsInfo.publisher}</p>
                         </c:if>
                         <c:if test="${empty bookInfo}">
                             <input type="text" name="publisher">
@@ -83,7 +80,6 @@
                         <span>出版日</span><span class="care care2">必須</span>
                         <c:if test="${!empty bookInfo}">
                             <input type="text" name="publish_date" value="${bookInfo.publish_date}">
-                            <p>${bookDetailsInfo.publishDate}</p>
                         </c:if>
                         <c:if test="${empty bookInfo}">
                             <input type="text" name="publish_date">
@@ -91,22 +87,11 @@
                         <c:if test="${!empty errorPublishDate}">
                             <div class="error">${errorPublishDate}</div>
                         </c:if>                          
-                    </div>
-                    <div>
-                        <span>書籍説明</span>
-                        <c:if test="${!empty bookInfo}">
-                            <input type="text" name="description" value="${bookInfo.descripttion}">
-                            <p>${bookDetailsInfo.description}</p>
-                        </c:if>
-                        <c:if test="${empty bookInfo}">
-                            <input type="text" name="description">
-                        </c:if>
-                    </div>
+                    </div>         
                     <div>
                         <span>ISBN</span>
                         <c:if test="${!empty bookInfo}">
-                            <input type="text" name="isbn" value="${bookInfo.isbn}">
-                            <p>${bookDetailsInfo.isbn}</p>
+                            <input type="text" name="isbn" value="${bookInfo.isbn}">                            
                         </c:if>
                         <c:if test="${empty bookInfo}">
                             <input type="text" name="isbn">
@@ -117,6 +102,15 @@
                         <c:if test="${!empty errorInput}">
                             <div class="error">${errorInput}</div>
                         </c:if>                         
+                    </div>
+                    <div>
+                        <span>書籍説明</span>
+                        <c:if test="${!empty bookInfo}">
+                            <input type="text" name="description" value="${bookInfo.descripttion}">
+                        </c:if>
+                        <c:if test="${empty bookInfo}">
+                            <input type="text" name="description">
+                        </c:if>
                     </div>
                     <input type="hidden" id="bookId" name="bookId" value="${bookInfo.bookId}">
                 </div>
