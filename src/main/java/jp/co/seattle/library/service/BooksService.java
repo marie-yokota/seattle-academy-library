@@ -58,6 +58,18 @@ public class BooksService {
         return bookDetailsInfo;
     }
 
+    /**
+     * 書籍IDを取得する
+     * 
+     * @param bookInfo
+     * @return bookId
+     */
+    public int getBookId() {
+        String sql = "SELECT id FROM books ORDER BY id DESC LIMIT 1;";
+        int bookId = jdbcTemplate.queryForObject(sql, int.class);
+        return bookId;
+    }
+
 
 
     /**
@@ -78,6 +90,7 @@ public class BooksService {
                 + "sysdate())";
 
         jdbcTemplate.update(sql);
+
     }
 
     /**
@@ -88,5 +101,6 @@ public class BooksService {
         String sql = "DELETE FROM books WHERE id = " + bookId + ";";
         jdbcTemplate.update(sql);
     }
+
 }
 

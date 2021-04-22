@@ -56,7 +56,6 @@ public class AddBooksController {
     @Transactional
     @RequestMapping(value = "/insertBook", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
     public String insertBook(Locale locale,
-            @RequestParam("title") Integer bookId,
             @RequestParam("title") String title,
             @RequestParam("author") String author,
             @RequestParam("publisher") String publisher,
@@ -69,7 +68,6 @@ public class AddBooksController {
 
         // パラメータで受け取った書籍情報をDtoに格納する。
         BookDetailsInfo bookInfo = new BookDetailsInfo();
-        bookInfo.setBookId(bookId);
         bookInfo.setTitle(title);
         bookInfo.setAuthor(author);
         bookInfo.setPublisher(publisher);
@@ -136,9 +134,13 @@ public class AddBooksController {
         // 書籍情報を新規登録する
         booksService.registBook(bookInfo);
 
-        model.addAttribute("resultMessage", "登録完了");
+        //     model.addAttribute("resultMessage", "登録完了");
+
+        //登録した書籍の詳細情報を表示するように実装
+        
+        int bookId = booksService.getBookId();
+
         model.addAttribute("bookDetailsInfo", booksService.getBookInfo(bookId));
-        // TODO 登録した書籍の詳細情報を表示するように実装
         //  詳細画面に遷移する
         return "details";
     }
