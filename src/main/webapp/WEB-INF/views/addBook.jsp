@@ -99,9 +99,6 @@
                         <c:if test="${!empty errorIsbn}">
                             <div class="error">${errorIsbn}</div>
                         </c:if>
-                        <c:if test="${!empty errorInput}">
-                            <div class="error">${errorInput}</div>
-                        </c:if>
                     </div>
                     <div>
                         <span>書籍説明</span>
@@ -110,6 +107,9 @@
                         </c:if>
                         <c:if test="${empty bookInfo}">
                             <input type="text" name="description">
+                        </c:if>
+                        <c:if test="${!empty errorInput}">
+                            <div class="error">${errorInput}</div>
                         </c:if>
                     </div>
                     <input type="hidden" id="bookId" name="bookId" value="${bookInfo.bookId}">

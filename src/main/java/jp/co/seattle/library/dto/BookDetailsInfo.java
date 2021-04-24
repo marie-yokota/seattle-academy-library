@@ -14,13 +14,13 @@ public class BookDetailsInfo {
 
     private int bookId;
 
-    private String title = null;
+    private String title;
 
-    private String author = null;
+    private String author;
 
-    private String publisher = null;
+    private String publisher;
 
-    private String publishDate = null;
+    private String publishDate;
 
     private String thumbnailUrl;
 

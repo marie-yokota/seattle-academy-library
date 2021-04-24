@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -96,25 +97,34 @@ public class AddBooksController {
                 return "addBook";
             }
         }
+        //「Vaild」意味:有効です
+        // 有効であればTrue、無効であればFalse
+
         //titleのバリデーションチェック(必須項目である)
-        boolean isTitleVaild = (title.isEmpty());
+        boolean isTitleVaild = !(StringUtils.isEmpty(title));
 
         //著者名のバリデーションチェック(必須項目である)
-        boolean isAuthorVaild = (author.isEmpty());
+        boolean isAuthorVaild = !(StringUtils.isEmpty(author));
 
         //出版社のバリデーションチェック(必須項目である)
-        boolean isPublisherVaild = (publisher.isEmpty());
+        boolean isPublisherVaild = !(StringUtils.isEmpty(publisher));
 
         //出版日が半角数字YYYYMMDD形式であるか確認
-        boolean isPublishDateVaild = (publishDate.isEmpty());
+        boolean isPublishDateVaild = !(StringUtils.isEmpty(publishDate));
 
-        if (isTitleVaild || isAuthorVaild || isPublisherVaild || isPublishDateVaild) {
+        //必須項目が入力されていない場合の対処
+        if (!isTitleVaild || !isAuthorVaild || !isPublisherVaild || !isPublishDateVaild) {
             model.addAttribute("errorInput", "必須項目は全て入力してください");
             return "addBook";
-        } else if (!isPublishDateVaild) {
+        } else if (isPublishDateVaild) { //出版日が日にちとして有効であるか確認
             try {
                 DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
-                dateFormat.setLenient(false);
+                dateFormat.setLenient(false);//厳密にチェックをする
+                String transformationPublishDate = dateFormat.format(dateFormat.parse(publishDate)); //入力値を指定されたフォーマット日付型に変換
+                if (!publishDate.equals(transformationPublishDate)) {
+                    model.addAttribute("errorPublishDate", "有効な日にちを入力してください");
+                    return "addBook";
+                }
             } catch (Exception e) {
                 model.addAttribute("errorPublishDate", "有効な日にちを入力してください");
                 return "addBook";
@@ -122,19 +132,24 @@ public class AddBooksController {
 
         }
 
-        //ISBNが許容桁数が10または13の半角数字であるか確認
-        boolean isIsbnVaild = (isbn.isEmpty());
-        if (!isIsbnVaild) {
-            if (!(isbn.length() == 13) || !(isbn.length() == 10)) {
-                model.addAttribute("errorIsbn", "ISBNは10桁または13桁で入力してください");
+        //ISBNが半角数字であるか確認
+        boolean isIsbnVaild = isbn.matches("^([0-9])+$");
+
+        if (!StringUtils.isEmpty(isbn)) { //ISBNにデータが入っているか
+            if (!isIsbnVaild) { //数字でない場合
+                model.addAttribute("errorIsbn", "①ISBNは10桁または13桁の数字を入力してください");
                 return "addBook";
+            } else if (!(isbn.length() == 13) && !(isbn.length() == 10)) { //10桁13桁でいない場合が真
+                model.addAttribute("errorIsbn", "②ISBNは10桁または13桁の数字を入力してください");
+                    return "addBook";
             }
         }
+        
 
         // 書籍情報を新規登録する
         booksService.registBook(bookInfo);
 
-        //     model.addAttribute("resultMessage", "登録完了");
+        //model.addAttribute("resultMessage", "登録完了");
 
         //登録した書籍の詳細情報を表示するように実装
 
