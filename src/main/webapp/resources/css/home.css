@@ -214,8 +214,20 @@ a:hover, button:hover {
     display: flex;
     justify-content: center;
 }
+button.btn_addBook{
+background-color: #6699ff;
+}
+button.btn_rentBook{
+background-color: #FFA500; 
+}
+button.btn_returnBook{
+background-color: #6699ff;
+}
+button.btn_editBook{
+background-color: #00AC73;
+}
 .button.btn_bulkRegist{
-	    display: flex;
+	display: flex;
     justify-content: center;
 }
 
@@ -233,6 +245,7 @@ button.btn_addBook:focus, button.btn_editBook:focus, button.btn_deleteBook:focus
 button.btn_addBook:hover, button.btn_editBook:hover, button.btn_deleteBook:hover,button.btn_rentBook:hover,button.btn_returnBook:hover,button.btn_bulkRegist:hover {
     cursor: pointer;
 }
+
 
 hr.border_add {
 	width:850px;
