@@ -85,7 +85,7 @@ public class BooksService {
                 + bookInfo.getDescription() + "','"
                 + bookInfo.getIsbn() + "',"
                 + "sysdate(),"
-                + "sysdate()";
+                + "sysdate())";
 
         jdbcTemplate.update(sql);
 

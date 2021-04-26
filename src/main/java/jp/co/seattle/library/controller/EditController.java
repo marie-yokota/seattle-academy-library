@@ -66,7 +66,7 @@ public class EditController {
      * @param isbn ISBN
      * @param file サムネイルファイル
      * @param model モデル
-     * @return 遷移先画面
+     * @return 詳細画面に遷移する
      */
     @Transactional
     @RequestMapping(value = "/updateBook", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
