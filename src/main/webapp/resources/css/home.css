@@ -214,6 +214,18 @@ a:hover, button:hover {
     display: flex;
     justify-content: center;
 }
+button.btn_addBook{
+background-color: #6699ff;
+}
+button.btn_rentBook{
+background-color: #FFA500; 
+}
+button.btn_returnBook{
+background-color: #6699ff;
+}
+button.btn_editBook{
+background-color: #00AC73;
+}
 .button.btn_bulkRegist{
 	    display: flex;
     justify-content: center;
