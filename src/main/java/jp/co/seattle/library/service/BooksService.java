@@ -58,7 +58,17 @@ public class BooksService {
         return bookDetailsInfo;
     }
 
-
+    /**
+     * 書籍IDを取得する
+     * 
+     * 
+     * @return bookId
+     */
+    public int getBookId() {
+        String sql = "SELECT id FROM books ORDER BY id DESC LIMIT 1;";
+        int bookId = jdbcTemplate.queryForObject(sql, int.class);
+        return bookId;
+    }
 
     /**
      * 書籍を登録する
@@ -67,14 +77,18 @@ public class BooksService {
      */
     public void registBook(BookDetailsInfo bookInfo) {
 
-        String sql = "INSERT INTO books (title, author,publisher,thumbnail_name,thumbnail_url,reg_date,upd_date) VALUES ('"
+        String sql = "INSERT INTO books (title, author,publisher,publish_date,thumbnail_name,thumbnail_url,description,isbn,reg_date,upd_date) VALUES ('"
                 + bookInfo.getTitle() + "','" + bookInfo.getAuthor() + "','" + bookInfo.getPublisher() + "','"
+                + bookInfo.getPublishDate() + "','"
                 + bookInfo.getThumbnailName() + "','"
-                + bookInfo.getThumbnailUrl() + "',"
+                + bookInfo.getThumbnailUrl() + "','"
+                + bookInfo.getDescription() + "','"
+                + bookInfo.getIsbn() + "',"
                 + "sysdate(),"
                 + "sysdate())";
 
         jdbcTemplate.update(sql);
+
     }
 
     /**
@@ -85,5 +99,5 @@ public class BooksService {
         String sql = "DELETE FROM books WHERE id = " + bookId + ";";
         jdbcTemplate.update(sql);
     }
-}
 
+}
