@@ -183,7 +183,7 @@ a:hover, button:hover {
     margin-top: 20px;
 }
 
-.add_book_content .content_right, .detail_book_content .content_right {
+.add_book_content .content_right, .detail_book_content .content_right  {
     margin-left: 20px;
 }
 .content_right input, .detail_book_content .content_right p {
