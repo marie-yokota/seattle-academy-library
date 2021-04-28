@@ -246,8 +246,8 @@ main {
 }
 /* コンテンツ本体 */
 main .content_body {
-    display: flex;
-    flex-wrap: wrap;
+    display: flex; 
+    flex-wrap: wrap; /*この二つの文章で中央揃えになる*/
 }
 
 /* 共通フッター */
