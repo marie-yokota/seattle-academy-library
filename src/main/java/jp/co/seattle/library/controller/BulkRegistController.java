@@ -42,7 +42,7 @@ public class BulkRegistController {
     @Transactional
     @RequestMapping(value = "/uploadFile", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
     public String uploadFlie(Locale locale,
-            @RequestParam("file_name") MultipartFile file_name,
+            @RequestParam("file_name") MultipartFile fileName,
             Model model) {
         logger.info("Welcome insertBooks.java! The client locale is {}.", locale);
 
@@ -51,11 +51,10 @@ public class BulkRegistController {
         List<String[]> data = new ArrayList<String[]>();
         String line = null;
         List<String> errorList = new ArrayList<String>();
-        //        String errorList = null;
 
         int i = 1;
         try {
-            InputStream stream = file_name.getInputStream();
+            InputStream stream = fileName.getInputStream();
             Reader reader = new InputStreamReader(stream);
             bufferedReader = new BufferedReader(reader);
             // readLineで一行ずつ読み込む
@@ -72,31 +71,29 @@ public class BulkRegistController {
             String requiredItem = "";
             String errorStr = "";
             String vaildError = "";
-            //titleのバリデーションチェック(必須項目である)
-            boolean isTitleVaild = !(StringUtils.isEmpty(validation[0]));
-
-            //著者名のバリデーションチェック(必須項目である)
-            boolean isAuthorVaild = !(StringUtils.isEmpty(validation[1]));
-
-            //出版社のバリデーションチェック(必須項目である)
-            boolean isPublisherVaild = !(StringUtils.isEmpty(validation[2]));
 
             //出版日のバリデーションチェック(必須項目である)
             boolean isPublishDateVaild = !(StringUtils.isEmpty(validation[3]));
 
             //必須項目が入力されていない場合の対処
-            if (!isTitleVaild) {
+            //titleが空である時
+            if (StringUtils.isEmpty(validation[0])) {
                 requiredItem = "「タイトル」";
             }
-            if (!isAuthorVaild) {
+
+            //著者名が空である時
+            if (StringUtils.isEmpty(validation[1])) {
                 requiredItem = requiredItem + "「著者名」";
             }
-            if (!isPublisherVaild) {
+
+            //出版社が空である時
+            if (StringUtils.isEmpty(validation[2])) {
                 requiredItem = requiredItem + "「出版社」";
             }
-            if (!isPublishDateVaild) {
+
+            if (!isPublishDateVaild) {//出版日が無効である
                 requiredItem = requiredItem + "「出版日」";
-            } else if (isPublishDateVaild) { //出版日が日にちとして有効であるか確認
+            } else if (isPublishDateVaild) { //出版日が日にちとして有効である
                 try {
                     DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
                     dateFormat.setLenient(false);//厳密にチェックをする
@@ -108,14 +105,15 @@ public class BulkRegistController {
                     errorStr = "「出版日」";
                 }
             }
+
             //ISBNが10桁または13桁の半角数字であるか確認
             boolean isIsbnVaild = validation[5].matches("^([0-9]{10}|[0-9]{13})+$");
             if (!(StringUtils.isEmpty(validation[5]))) { //ISBNにデータが入っている場合
                 if (!isIsbnVaild) { //有効でない場合
                     errorStr = errorStr + "「ISBN」";
-
                 }
             }
+
             //エラー表示の設定
             //requiredItem:必須項目が未入力の時の表示
             if (!(StringUtils.isEmpty(requiredItem))) {
@@ -128,15 +126,13 @@ public class BulkRegistController {
 
             if (!StringUtils.isEmpty(vaildError)) {
                 errorList.add("[" + i++ + "]" + vaildError + "<br>");
+            } else {
+                i++;
             }
-            //            if (!StringUtils.isEmpty(vaildError)) {
-            //                errorList = errorList + "[" + i++ + "]" + errorList + "<br>";
-            //            }
         }
 
         //errorリストが空  
         if (errorList.isEmpty()) {
-            //        if (!StringUtils.isEmpty(errorList)) {
             //→Yes：1行ずつDBサーバー登録
             for (String[] line_data : data) {//line_dataに一つの書籍情報を格納する
                 // 各行データを要素毎に格納                 
@@ -157,7 +153,5 @@ public class BulkRegistController {
         }
         model.addAttribute("completed", "登録完了しました。");
         return "bulkRegist";
-
     }
-
 }

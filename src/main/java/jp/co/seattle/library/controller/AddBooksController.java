@@ -132,14 +132,14 @@ public class AddBooksController {
 
         }
 
-        //ISBNが半角数字であるか確認
-        boolean isIsbnVaild = isbn.matches("^([0-9])+$");
+        //ISBNが10桁または13桁の半角数字であるか確認
+        boolean isIsbnVaild = isbn.matches("^^([0-9]{10}|[0-9]{13})+$");
 
         if (!StringUtils.isEmpty(isbn)) { //ISBNにデータが入っているか
             if (!isIsbnVaild) { //数字でない場合
                 model.addAttribute("errorIsbn", "①ISBNは10桁または13桁の数字を入力してください");
                 return "addBook";
-            } else if (!(isbn.length() == 13) || !(isbn.length() == 10)) { //10桁または13桁でない場合が真
+            } else if (!(isbn.length() == 13) || !(isbn.length() == 10)) { //桁でない場合が真
                 model.addAttribute("errorIsbn", "②ISBNは10桁または13桁の数字を入力してください");
                     return "addBook";
             }
