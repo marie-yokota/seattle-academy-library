@@ -44,9 +44,13 @@
                     <button type="submit" id="bulk-btn" class="btn_bulkRegist">一括登録</button>
                 </div>
             </form>
-            <c:forEach var="errorList" items="${errorList}">
-                <div class="error">${errorList}</div>
-            </c:forEach>
+            
+           
+            <c:forEach var="errorList" items="${errorList}" varStatus="status"> 
+             <div class="error">              
+                <c:out value="${errorList}" />
+            </div></c:forEach> 
+            
             <c:if test="${!empty errorRead}">
                 <div class="error">${errorRead}</div>
             </c:if>

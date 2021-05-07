@@ -47,19 +47,17 @@ public class BulkRegistController {
         logger.info("Welcome insertBooks.java! The client locale is {}.", locale);
 
         //以下ファイルの読み込みとデータを格納する
-        BufferedReader bufferedReader = null;
+
         List<String[]> data = new ArrayList<String[]>();
         String line = null;
         List<String> errorList = new ArrayList<String>();
 
         int i = 1;
-        try {
-            InputStream stream = fileName.getInputStream();
-            Reader reader = new InputStreamReader(stream);
-            bufferedReader = new BufferedReader(reader);
-            // readLineで一行ずつ読み込む
+        try (InputStream stream = fileName.getInputStream();
+                Reader reader = new InputStreamReader(stream);
+                BufferedReader bufferedReader = new BufferedReader(reader);) {
 
-            while ((line = bufferedReader.readLine()) != null) {
+            while ((line = bufferedReader.readLine()) != null) { // readLineで一行ずつ読み込む
                 data.add(line.split(",", -1));
                 //1行ずつ取り出しバリデーションチェック(errorリストに格納)                
             }
@@ -125,7 +123,7 @@ public class BulkRegistController {
             }
 
             if (!StringUtils.isEmpty(vaildError)) {
-                errorList.add("[" + i++ + "]" + vaildError + "<br>");
+                errorList.add("[" + i++ + "]" + vaildError);
             } else {
                 i++;
             }
