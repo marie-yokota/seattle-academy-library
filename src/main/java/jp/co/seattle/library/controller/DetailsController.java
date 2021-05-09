@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import jp.co.seattle.library.service.BooksService;
+import jp.co.seattle.library.service.LendingService;
 
 /**
  * 詳細表示コントローラー
@@ -20,10 +21,11 @@ import jp.co.seattle.library.service.BooksService;
 @Controller
 public class DetailsController {
     final static Logger logger = LoggerFactory.getLogger(BooksService.class);
-
     @Autowired
     private BooksService booksService;
 
+    @Autowired
+    private LendingService lendingService;
     /**
      * 詳細画面に遷移する
      * @param locale
@@ -37,9 +39,28 @@ public class DetailsController {
             @RequestParam("bookId") Integer bookId,
             Model model) {
         // デバッグ用ログ
-        logger.info("Welcome detailsControler.java! The client locale is {}.", locale);
+        logger.info("Welcome detailsBook.java! The client locale is {}.", locale);
 
         model.addAttribute("bookDetailsInfo", booksService.getBookInfo(bookId));
+
+        //貸出状況を確認とフロントに表示
+        int count = lendingService.LendingConfirmation(bookId);
+        if (count == 1) {
+            //借りるボタン_非活性
+            model.addAttribute("rentActivation", "disabled");
+            //返すボタン_活性
+            model.addAttribute("returnActivation");
+            //貸出ステータス
+            model.addAttribute("lendingStatus", "貸出中");
+        } else {
+            //借りるボタン_活性
+            model.addAttribute("rentActivation");
+            //返すボタン_非活性
+            model.addAttribute("returnActivation", "disabled");
+            //貸出ステータス
+            model.addAttribute("lendingStatus", "貸出可能");
+        }
+
 
         return "details";
     }

@@ -156,6 +156,14 @@ public class AddBooksController {
         int bookId = booksService.getBookId();
 
         model.addAttribute("bookDetailsInfo", booksService.getBookInfo(bookId));
+
+        //借りるボタン_活性
+        model.addAttribute("rentActivation");
+        //返すボタン_非活性
+        model.addAttribute("returnActivation", "disabled");
+        //貸出ステータス
+        model.addAttribute("lendingStatus", "貸出可能");
+
         //  詳細画面に遷移する
         return "details";
     }

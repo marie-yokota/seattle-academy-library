@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import jp.co.seattle.library.dto.BookDetailsInfo;
 import jp.co.seattle.library.service.BooksService;
+import jp.co.seattle.library.service.LendingService;
 import jp.co.seattle.library.service.ThumbnailService;
 
 /**
@@ -35,6 +36,10 @@ public class EditController {
     @Autowired
     private ThumbnailService thumbnailService;
 
+    @Autowired
+    private LendingService lendingService;
+
+
     /**
      * 書籍情報の更新をする
      * @param locale
@@ -48,7 +53,7 @@ public class EditController {
             @RequestParam("bookId") Integer bookId,
             Model model) {
         // デバッグ用ログ
-        logger.info("Welcome detailsControler.java! The client locale is {}.", locale);
+        logger.info("Welcome displayEdit.java! The client locale is {}.", locale);
 
         model.addAttribute("bookDetailsInfo", booksService.getBookInfo(bookId));
         return "editBook";
@@ -80,7 +85,7 @@ public class EditController {
             @RequestParam("isbn") String isbn,
             @RequestParam("thumbnail") MultipartFile file,
             Model model) {
-        logger.info("Welcome insertBooks.java! The client locale is {}.", locale);
+        logger.info("Welcome editBook.java! The client locale is {}.", locale);
 
         // パラメータで受け取った書籍情報をDtoに格納する。
         BookDetailsInfo bookInfo = new BookDetailsInfo();
@@ -169,6 +174,24 @@ public class EditController {
         //更新した書籍の詳細情報を表示するように実装
 
         model.addAttribute("bookDetailsInfo", booksService.getBookInfo(bookId));
+
+        //貸出状況を確認とフロントに表示
+        int count = lendingService.LendingConfirmation(bookId);
+        if (count == 1) {
+            //借りるボタン_非活性
+            model.addAttribute("rentActivation", "disabled");
+            //返すボタン_活性
+            model.addAttribute("returnActivation");
+            //貸出ステータス
+            model.addAttribute("lendingStatus", "貸出中");
+        } else {
+            //借りるボタン_活性
+            model.addAttribute("rentActivation");
+            //返すボタン_非活性
+            model.addAttribute("returnActivation", "disabled");
+            //貸出ステータス
+            model.addAttribute("lendingStatus", "貸出可能");
+        }
         //  詳細画面に遷移する
         return "details";
     }
