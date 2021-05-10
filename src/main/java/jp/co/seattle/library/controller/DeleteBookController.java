@@ -53,13 +53,14 @@ public class DeleteBookController {
             model.addAttribute("bookList", booksService.getBookList());
             //ホーム画面に遷移する
             return "home";
-
         } else {
             model.addAttribute("errorDelete", "貸出中のため削除できません");
             //書籍情報を再取得する
             model.addAttribute("bookDetailsInfo", booksService.getBookInfo(bookId));
             //貸出ステータス
             model.addAttribute("lendingStatus", "貸出中");
+            //借りるボタン_非活性
+            model.addAttribute("rentActivation", "disabled");
             return "details";
         }
     }

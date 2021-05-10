@@ -85,7 +85,7 @@
                 <button type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_editBook">編集</button>
             </form>
             <form method="post" action="<%=request.getContextPath()%>/deleteBook">
-                <button type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_deleteBook">削除</button>
+                <button type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_deleteBook" ${deleteActivation}>削除</button>
             </form>
         </div>
     </main>
