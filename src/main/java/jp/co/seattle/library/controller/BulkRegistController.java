@@ -65,7 +65,6 @@ public class BulkRegistController {
 
         int i = 1;
         try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileName.getInputStream()));) {
-
             while ((line = bufferedReader.readLine()) != null) { // readLineで一行ずつ読み込む
                 data.add(line.split(",", -1));
                 //1行ずつ取り出しバリデーションチェック(errorリストに格納)                

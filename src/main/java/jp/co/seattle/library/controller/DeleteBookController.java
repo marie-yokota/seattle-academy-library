@@ -44,7 +44,7 @@ public class DeleteBookController {
             @RequestParam("bookId") Integer bookId,
             Model model) {
         logger.info("Welcome delete! The client locale is {}.", locale);
-
+        //貸出状況の確認
         int count = lendingService.LendingConfirmation(bookId);
         if (count == 0) {
             //削除メソッドを使用する

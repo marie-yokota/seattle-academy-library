@@ -51,11 +51,10 @@ public class LendingController {
         //貸出ステータス変更とボタンのdisabled変更
         //借りるボタン_非活性
         model.addAttribute("rentActivation", "disabled");
-        //返すボタン_活性
-        model.addAttribute("returnActivation");
+        //削除ボタン_非活性
+        model.addAttribute("deleteActivation", "disabled");
         //貸出ステータス
         model.addAttribute("lendingStatus", "貸出中");
-
         //貸出情報の取得・再表示
         model.addAttribute("bookDetailsInfo", booksService.getBookInfo(bookId));
 
@@ -81,13 +80,10 @@ public class LendingController {
         lendingService.deleteLending(bookId);
 
         //貸出ステータス変更とボタンの非活性
-        //借りるボタン_活性
-        model.addAttribute("rentActivation");
         //返すボタン_非活性
         model.addAttribute("returnActivation", "disabled");
         //貸出ステータス
         model.addAttribute("lendingStatus", "貸出可能");
-
         //貸出情報の取得・再表示
         model.addAttribute("bookDetailsInfo", booksService.getBookInfo(bookId));
         return "details";
