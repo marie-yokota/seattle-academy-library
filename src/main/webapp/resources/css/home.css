@@ -250,7 +250,8 @@ hr.border_add {
 	width:850px;
 	margin: revert;
 }
-
+/*一括登録系 */
+/* アップロードボタンのクラスあり。 */
 .uploadButton {
     display:inline-block;
     position:relative;
