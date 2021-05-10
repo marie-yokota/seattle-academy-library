@@ -1,9 +1,7 @@
 package jp.co.seattle.library.controller;
 
 import java.io.BufferedReader;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.Reader;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -25,6 +23,11 @@ import org.springframework.web.multipart.MultipartFile;
 import jp.co.seattle.library.dto.BookDetailsInfo;
 import jp.co.seattle.library.service.BooksService;
 
+/**
+ * 一括登録コントローラー
+ *
+ * 
+ */
 @Controller
 public class BulkRegistController {
     final static Logger logger = LoggerFactory.getLogger(AddBooksController.class);
@@ -39,6 +42,14 @@ public class BulkRegistController {
         return "bulkRegist";
     }
 
+    /**
+     * ファイル一括登録
+     * 
+     * @param locale
+     * @param fileName
+     * @param model
+     * @return
+     */
     @Transactional
     @RequestMapping(value = "/uploadFile", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
     public String uploadFlie(Locale locale,
@@ -53,9 +64,7 @@ public class BulkRegistController {
         List<String> errorList = new ArrayList<String>();
 
         int i = 1;
-        try (InputStream stream = fileName.getInputStream();
-                Reader reader = new InputStreamReader(stream);
-                BufferedReader bufferedReader = new BufferedReader(reader);) {
+        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileName.getInputStream()));) {
 
             while ((line = bufferedReader.readLine()) != null) { // readLineで一行ずつ読み込む
                 data.add(line.split(",", -1));
