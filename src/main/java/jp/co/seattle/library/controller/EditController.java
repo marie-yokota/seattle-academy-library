@@ -114,7 +114,7 @@ public class EditController {
 
                 // 異常終了時の処理
                 logger.error("サムネイルアップロードでエラー発生", e);
-                model.addAttribute("bookDetailsInfo", bookInfo);
+                model.addAttribute("bookDetailsInfo", booksService.getBookInfo(bookId));
                 return "editBook";
             }
         }
@@ -136,6 +136,7 @@ public class EditController {
         //必須項目が入力されていない場合の対処
         if (!isTitleVaild || !isAuthorVaild || !isPublisherVaild || !isPublishDateVaild) {
             model.addAttribute("errorInput", "必須項目は全て入力してください");
+            model.addAttribute("bookDetailsInfo", booksService.getBookInfo(bookId));
             return "editBook";
         } else if (isPublishDateVaild) { //出版日が日にちとして有効であるか確認
             try {
@@ -144,10 +145,12 @@ public class EditController {
                 String transformationPublishDate = dateFormat.format(dateFormat.parse(publishDate)); //入力値を指定されたフォーマット日付型に変換
                 if (!publishDate.equals(transformationPublishDate)) {
                     model.addAttribute("errorPublishDate", "有効な日にちを入力してください");
+                    model.addAttribute("bookDetailsInfo", booksService.getBookInfo(bookId));
                     return "editBook";
                 }
             } catch (Exception e) {
                 model.addAttribute("errorPublishDate", "有効な日にちを入力してください");
+                model.addAttribute("bookDetailsInfo", booksService.getBookInfo(bookId));
                 return "editBook";
             }
 
@@ -159,9 +162,11 @@ public class EditController {
         if (!StringUtils.isEmpty(isbn)) { //ISBNにデータが入っているか
             if (!isIsbnVaild) { //数字でない場合
                 model.addAttribute("errorIsbn", "①ISBNは10桁または13桁の数字を入力してください");
+                model.addAttribute("bookDetailsInfo", booksService.getBookInfo(bookId));
                 return "editBook";
             } else if (!(isbn.length() == 13) && !(isbn.length() == 10)) { //10桁13桁でいない場合が真
                 model.addAttribute("errorIsbn", "②ISBNは10桁または13桁の数字を入力してください");
+                model.addAttribute("bookDetailsInfo", booksService.getBookInfo(bookId));
                 return "editBook";
             }
         }
