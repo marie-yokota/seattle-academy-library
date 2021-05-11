@@ -148,14 +148,13 @@ public class AddBooksController {
 
         // 書籍情報を新規登録する
         booksService.registBook(bookInfo);
-
-        //model.addAttribute("resultMessage", "登録完了");
-
         //登録した書籍の詳細情報を表示するように実装
-
         int bookId = booksService.getBookId();
-
+        //書籍の詳細情報の再取得
         model.addAttribute("bookDetailsInfo", booksService.getBookInfo(bookId));
+        //貸出ステータス
+        model.addAttribute("lendingStatus", "貸出可能");
+
         //  詳細画面に遷移する
         return "details";
     }

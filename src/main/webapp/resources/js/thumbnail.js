@@ -5,7 +5,6 @@ $(function(){
         reader = new FileReader(),
         $preview = $(".book_thumnail");
         t = this;
-
     // 画像ファイル以外の場合は何もしない
     if(file.type.indexOf("image") < 0){
       return false;
@@ -16,6 +15,7 @@ $(function(){
       return function(e) {
         //既存のプレビューを削除
         $preview.empty();
+		
         // .prevewの領域の中にロードした画像を表示するimageタグを追加
         $preview.append($('<img>').attr({
                   src: e.target.result,
