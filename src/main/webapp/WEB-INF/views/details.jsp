@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="resources/css/lightbox.css">
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="resources/js/lightbox.js" /></script>
+<script src="resources/js/details.js" /></script>
 </head>
 <body class="wrapper">
     <header>
@@ -42,7 +43,9 @@
                         </c:if> <input type="hidden" name="bookId" value="${bookDetailsInfo.bookId}">
                     </a>
                 </div>
-                <p>${lendingStatus}</p>
+                <p id=lendingStatus>${lendingStatus}</p> 
+              
+              
                 <c:if test="${!empty errorDelete}">
                     <div class="error">${errorDelete}</div>
                 </c:if>
@@ -76,18 +79,19 @@
         </div>
         <div class="edtDelBookBtn_box">
             <form method="post" action="<%=request.getContextPath()%>/rentBook">
-                <button type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_rentBook" ${rentActivation}>借りる</button>
+                <button id=btn_rentBook  type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_rentBook">借りる</button>
             </form>
             <form method="post" action="<%=request.getContextPath()%>/returnBook">
-                <button type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_returnBook" ${returnActivation}>返す</button>
+                <button id=btn_returnBook type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_returnBook">返す</button>
             </form>
             <form method="post" action="<%=request.getContextPath()%>/editBook">
                 <button type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_editBook">編集</button>
             </form>
             <form method="post" action="<%=request.getContextPath()%>/deleteBook">
-                <button type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_deleteBook" ${deleteActivation}>削除</button>
+                <button id=btn_deleteBook type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_deleteBook">削除</button>
             </form>
         </div>
     </main>
+    
 </body>
 </html>

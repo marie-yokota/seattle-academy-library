@@ -59,8 +59,6 @@ public class DeleteBookController {
             model.addAttribute("bookDetailsInfo", booksService.getBookInfo(bookId));
             //貸出ステータス
             model.addAttribute("lendingStatus", "貸出中");
-            //借りるボタン_非活性
-            model.addAttribute("rentActivation", "disabled");
             return "details";
         }
     }

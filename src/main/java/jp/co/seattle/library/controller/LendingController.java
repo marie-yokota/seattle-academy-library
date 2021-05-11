@@ -47,12 +47,6 @@ public class LendingController {
 
         //貸出登録
         lendingService.LendingRegistration(bookId);
-
-        //貸出ステータス変更とボタンのdisabled変更
-        //借りるボタン_非活性
-        model.addAttribute("rentActivation", "disabled");
-        //削除ボタン_非活性
-        model.addAttribute("deleteActivation", "disabled");
         //貸出ステータス
         model.addAttribute("lendingStatus", "貸出中");
         //貸出情報の取得・再表示
@@ -75,13 +69,8 @@ public class LendingController {
             Model model) {
         // デバッグ用ログ
         logger.info("Welcome returnBook.java! The client locale is {}.", locale);
-
         //返却登録
         lendingService.deleteLending(bookId);
-
-        //貸出ステータス変更とボタンの非活性
-        //返すボタン_非活性
-        model.addAttribute("returnActivation", "disabled");
         //貸出ステータス
         model.addAttribute("lendingStatus", "貸出可能");
         //貸出情報の取得・再表示

@@ -46,15 +46,9 @@ public class DetailsController {
         //貸出状況を確認とフロントに表示
         int count = lendingService.LendingConfirmation(bookId);
         if (count == 1) {//貸出中の時
-            //借りるボタン_非活性
-            model.addAttribute("rentActivation", "disabled");
             //貸出ステータス
             model.addAttribute("lendingStatus", "貸出中");
-            //削除ボタン_非活性
-            model.addAttribute("deleteActivation", "disabled");
         } else {//貸出可能の時
-            //返すボタン_非活性
-            model.addAttribute("returnActivation", "disabled");
             //貸出ステータス
             model.addAttribute("lendingStatus", "貸出可能");
         }
