@@ -44,16 +44,21 @@ public class LoginController {
             @RequestParam("password") String password,
             Model model) {
 
-        // TODO 下記のコメントアウトを外してサービスクラスを使用してください。
+        // 下記のコメントアウトを外してサービスクラスを使用してください。
         UserInfo selectedUserInfo = usersService.selectUserInfo(email, password);
-        // TODO パスワードとメールアドレスの組み合わせ存在チェック実装
+        // パスワードとメールアドレスの組み合わせ存在チェック実装
         if (selectedUserInfo == null) {
             model.addAttribute("errorMessage", "パスワードとメールアドレスが一致していません");
             return "login";
         }
 
-        // 本の情報を取得して画面側に渡す
-        model.addAttribute("bookList", booksService.getBookList());
+        if (booksService.countBooks() == 0) {
+            model.addAttribute("resultMessage", "登録されている書籍はありません");
+        } else {
+            // 本の情報を取得して画面側に渡す
+            model.addAttribute("bookList", booksService.getBookList());
+        }
+
         return "home";
     }
 }

@@ -77,7 +77,15 @@ public class AccountController {
         userInfo.setPassword(password);
         usersService.registUser(userInfo);
 
-        model.addAttribute("bookList", booksService.getBookList()); //booksService.getBookListをbookListの変数に入れた
+        //データ数が0の場合→「登録されている書籍はありません」を表示 
+        //それ以外は一覧を表示する
+
+        if (booksService.countBooks() == 0) {
+            model.addAttribute("resultMessage", "登録されている書籍はありません");
+        } else {
+            model.addAttribute("bookList", booksService.getBookList());
+        }
+
         return "home";
     }
 

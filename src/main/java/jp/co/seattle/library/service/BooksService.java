@@ -42,6 +42,16 @@ public class BooksService {
     }
 
     /**
+     * booksテーブル内にある書籍IDの数を調べる
+     * 
+     * @return countBook 書籍IDの数 
+     */
+    public int countBooks() {
+        int countBook = jdbcTemplate.queryForObject("SELECT COUNT(id) FROM books", int.class);
+        return countBook;
+    }
+
+    /**
      * 書籍IDに紐づく書籍詳細情報を取得する
      *
      * @param bookId 書籍ID

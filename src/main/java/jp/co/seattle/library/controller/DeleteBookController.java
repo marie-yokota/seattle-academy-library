@@ -49,12 +49,16 @@ public class DeleteBookController {
         if (count == 0) {
             //削除メソッドを使用する
             booksService.deleteBook(bookId);
-            //新しい書籍リストを取得する
-            model.addAttribute("bookList", booksService.getBookList());
+            //bookテーブルのデータ数を確認し処理を行う
+            if (booksService.countBooks() == 0) {
+                model.addAttribute("resultMessage", "登録されている書籍はありません");
+            } else {
+                model.addAttribute("bookList", booksService.getBookList());
+            }
             //ホーム画面に遷移する
             return "home";
         } else {
-            model.addAttribute("errorDelete", "貸出中のため削除できません");
+
             //書籍情報を再取得する
             model.addAttribute("bookDetailsInfo", booksService.getBookInfo(bookId));
             //貸出ステータス
