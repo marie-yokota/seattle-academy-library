@@ -89,7 +89,7 @@
                         </c:if>
                     </div>
                     <div>
-                        <span>ISBN</span>
+                        <span>ISBN</span><span class="care care1">任意</span>
                         <c:if test="${!empty bookInfo}">
                             <input type="text" name="isbn" value="${bookInfo.isbn}">
                         </c:if>
@@ -101,7 +101,7 @@
                         </c:if>
                     </div>
                     <div>
-                        <span>書籍説明</span>
+                        <span>書籍説明</span><span class="care care1">任意</span>
                         <c:if test="${!empty bookInfo}">
                             <input type="text" name="description" value="${bookInfo.descripttion}">
                         </c:if>
