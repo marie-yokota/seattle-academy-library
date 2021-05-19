@@ -30,14 +30,6 @@ public class HomeController {
      */
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String transitionHome(Model model) {
-        //booksテーブルのデータ数を調べる
-        //        int count = booksService.countBooks();
-
-        //        if (count == 0) {
-        //            model.addAttribute("resultMessage", "登録されている書籍はありません");
-        //        } else {
-        //            model.addAttribute("bookList", booksService.getBookList());
-        //        }
         //リスト内が空の場合→「登録されている書籍はありません」を表示 
         //それ以外は一覧を表示する
         List<BookInfo> getedBookList = booksService.getBookList();

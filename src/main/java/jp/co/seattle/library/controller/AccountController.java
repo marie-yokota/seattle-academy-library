@@ -83,10 +83,9 @@ public class AccountController {
         List<BookInfo> getedBookList = booksService.getBookList();
         if (getedBookList.size() == 0) {
             model.addAttribute("resultMessage", "登録されている書籍はありません");
-        } else {
-            model.addAttribute("bookList", getedBookList);
+            return "home";
         }
-
+        model.addAttribute("bookList", getedBookList);
         return "home";
     }
 
