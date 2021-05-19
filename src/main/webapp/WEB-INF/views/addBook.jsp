@@ -79,10 +79,10 @@
                     <div>
                         <span>出版日</span><span class="care care2">必須</span>
                         <c:if test="${!empty bookInfo}">
-                            <input type="text" name="publish_date" value="${bookInfo.publish_date}">
+                            <input type="text" name="publish_date" value="${bookInfo.publish_date}" placeholder="YYYYMMDD">
                         </c:if>
                         <c:if test="${empty bookInfo}">
-                            <input type="text" name="publish_date">
+                            <input type="text" name="publish_date" placeholder="YYYYMMDD">
                         </c:if>
                         <c:if test="${!empty errorPublishDate}">
                             <div class="error">${errorPublishDate}</div>
