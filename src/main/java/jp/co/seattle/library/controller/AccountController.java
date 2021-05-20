@@ -1,5 +1,6 @@
 package jp.co.seattle.library.controller;
 
+import java.util.List;
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import jp.co.seattle.library.dto.BookInfo;
 import jp.co.seattle.library.dto.UserInfo;
 import jp.co.seattle.library.service.BooksService;
 import jp.co.seattle.library.service.UsersService;
@@ -77,7 +79,13 @@ public class AccountController {
         userInfo.setPassword(password);
         usersService.registUser(userInfo);
 
-        model.addAttribute("bookList", booksService.getBookList()); //booksService.getBookListをbookListの変数に入れた
+        //リストないがからであるか確認
+        List<BookInfo> getedBookList = booksService.getBookList();
+        if (getedBookList.size() == 0) {
+            model.addAttribute("resultMessage", "登録されている書籍はありません");
+            return "home";
+        }
+        model.addAttribute("bookList", getedBookList);
         return "home";
     }
 

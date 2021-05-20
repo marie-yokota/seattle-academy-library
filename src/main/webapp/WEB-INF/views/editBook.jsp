@@ -78,17 +78,17 @@
                     <div>
                         <span>出版日</span><span class="care care2">必須</span>
                         <c:if test="${!empty bookDetailsInfo}">
-                            <input type="text" name="publish_date" value="${bookDetailsInfo.publishDate}">
+                            <input type="text" name="publish_date" value="${bookDetailsInfo.publishDate}" placeholder="YYYYMMDD">
                         </c:if>
                         <c:if test="${empty bookDetailsInfo}">
-                            <input type="text" name="publish_date">
+                            <input type="text" name="publish_date" placeholder="YYYYMMDD">
                         </c:if>
                         <c:if test="${!empty errorPublishDate}">
                             <div class="error">${errorPublishDate}</div>
                         </c:if>
                     </div>
                     <div>
-                        <span>ISBN</span>
+                        <span>ISBN</span><span class="care care1">任意</span>
                         <c:if test="${!empty bookDetailsInfo}">
                             <input type="text" name="isbn" value="${bookDetailsInfo.isbn}">
                         </c:if>
@@ -100,7 +100,7 @@
                         </c:if>
                     </div>
                     <div>
-                        <span>書籍説明</span>
+                        <span>書籍説明</span><span class="care care1">任意</span>
                         <c:if test="${!empty bookDetailsInfo}">
                             <input type="text" name="description" value="${bookDetailsInfo.description}">
                         </c:if>
