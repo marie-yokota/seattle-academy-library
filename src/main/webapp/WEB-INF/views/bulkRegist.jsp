@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="resources/css/lightbox.css">
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="resources/js/lightbox.js" /></script>
+<script src="resources/js/bulkRegist.js" /></script>
 </head>
 <body class="wrapper">
     <header>
@@ -44,8 +45,6 @@
                     <button type="submit" id="bulk-btn" class="btn_bulkRegist">一括登録</button>
                 </div>
             </form>
-            
-           
             <c:forEach var="errorList" items="${errorList}" varStatus="status"> 
              <div class="error">              
                 <c:out value="${errorList}" />
