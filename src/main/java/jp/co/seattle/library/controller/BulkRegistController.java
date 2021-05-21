@@ -113,8 +113,8 @@ public class BulkRegistController {
             }
 
             //ISBNが10桁または13桁の半角数字であるか確認
-            boolean isIsbnVaild = validation[5].matches("^([0-9]{10}|[0-9]{13})+$");
-            if (!(StringUtils.isEmpty(validation[5]))) { //ISBNにデータが入っている場合
+            boolean isIsbnVaild = validation[4].matches("^([0-9]{10}||[0-9]{13})$");
+            if (!(StringUtils.isEmpty(validation[4]))) { //ISBNにデータが入っている場合
                 if (!isIsbnVaild) { //有効でない場合
                     errorStr = errorStr + "「ISBN」";
                 }

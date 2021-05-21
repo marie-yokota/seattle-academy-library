@@ -190,7 +190,26 @@ button.btn_bulkRegist {
 a:hover, button:hover {
     opacity: 0.5;
 }
-
+button.btn_rentBook:disabled{
+	pointer-events: none;
+	cursor: default;
+	opacity: 0.6;
+}
+button.btn_returnBook:disabled{
+	pointer-events: none;
+	cursor: default;
+	opacity: 0.6;
+}
+button.btn_deleteBook:disabled{
+	pointer-events: none;
+	cursor: default;
+	opacity: 0.6;
+}
+button.btn_bulkRegist:disabled{
+	pointer-events: none;
+	cursor: default;
+	opacity: 0.6;
+}
 /* ここからaddbook */
 .add_book_content, .detail_book_content {
     justify-content: center;
@@ -228,22 +247,7 @@ a:hover, button:hover {
     display: flex;
     justify-content: center;
 }
-button.btn_addBook{
-background-color: #6699ff;
-}
-button.btn_rentBook{
-background-color: #FFA500; 
-}
-button.btn_returnBook{
-background-color: #6699ff;
-}
-button.btn_editBook{
-background-color: #00AC73;
-}
-.button.btn_bulkRegist{
-	    display: flex;
-    justify-content: center;
-}
+
 
 
 button.btn_addBook, button.btn_editBook, button.btn_deleteBook,button.btn_rentBook,button.btn_returnBook,button.btn_bulkRegist {
