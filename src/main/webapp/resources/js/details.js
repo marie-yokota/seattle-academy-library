@@ -6,7 +6,6 @@
 $(function() {
 	$(document).ready(function(){
 	var status = $("#lendingStatus").text();
-		 //$(getElementById("lendingStatus"));
 		if( status == '貸出中'){
 			$("#btn_rentBook").prop('disabled', true);
 			$("#btn_returnBook").prop('disabled', false);

@@ -36,16 +36,14 @@
             <div class="content_left">
                 <span>書籍の画像</span>
                 <div class="book_thumnail">
-                    <a href="${bookDetailsInfo.thumbnailUrl}" data-lightbox="image-1"> <c:if test="${empty bookDetailsInfo.thumbnailUrl}">
+                    <a href="${bookDetailsInfo.thumbnailUrl}" data-lightbox="image-1"> <c:if test="${bookDetailsInfo.thumbnailUrl =='null'}">
                             <img class="book_noimg" src="resources/img/noImg.png">
-                        </c:if> <c:if test="${!empty bookDetailsInfo.thumbnailUrl}">
-                            <img class="book_noimg" src="${bookDetailsInfo.thumbnailUrl}">
+                        </c:if> <c:if test="${bookDetailsInfo.thumbnailUrl !='null'}">
+                            <img class="book_img" src="${bookDetailsInfo.thumbnailUrl}">
                         </c:if> <input type="hidden" name="bookId" value="${bookDetailsInfo.bookId}">
                     </a>
                 </div>
-                <p id=lendingStatus>${lendingStatus}</p> 
-              
-              
+                <p id=lendingStatus>${lendingStatus}</p>
                 <c:if test="${!empty errorDelete}">
                     <div class="error">${errorDelete}</div>
                 </c:if>
@@ -79,7 +77,7 @@
         </div>
         <div class="edtDelBookBtn_box">
             <form method="post" action="<%=request.getContextPath()%>/rentBook">
-                <button id=btn_rentBook  type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_rentBook">借りる</button>
+                <button id=btn_rentBook type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_rentBook">借りる</button>
             </form>
             <form method="post" action="<%=request.getContextPath()%>/returnBook">
                 <button id=btn_returnBook type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_returnBook">返す</button>
@@ -92,6 +90,5 @@
             </form>
         </div>
     </main>
-    
 </body>
 </html>
