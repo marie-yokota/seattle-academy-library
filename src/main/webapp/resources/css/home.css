@@ -40,11 +40,13 @@ input {
 .body {
     width: 100%;
     text-align: center;
+    
 }
 
 .body form {
     border: none;
     display: inline-block;
+    
 }
 
 .care {
@@ -94,14 +96,17 @@ input {
 }
 
 .booklist {
-    margin-top: 15px;
+    margin-top: 15px;     
 }
 
 .books {
+	width: 200px;
+	height: 350px; 
     display: inline-block;
     margin-right: 10px;
-    line-height: 1.5;
+    line-height: 1.5;   
 }
+
 .book_thumnail {
     position: relative;
     width: 200px;
@@ -128,16 +133,25 @@ img.book_noimg, img.book_img{
 .book_title {
     font-size: 16px;
     text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .book_author {
     font-size: 13px;
-    text-align: center;
-    margin-bottom: 5px;
+    text-align: center;   
+    margin-bottom: 5px; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;   
 }
 
 .book_publisher, .book_publish_date {
     font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 a.btn_add_book,a.btn_bulk_book, button.btn_addBook,button.btn_editBook, button.btn_deleteBook,button.btn_rentBook,button.btn_returnBook,button.btn_bulkRegist {
@@ -176,7 +190,26 @@ button.btn_bulkRegist {
 a:hover, button:hover {
     opacity: 0.5;
 }
-
+button.btn_rentBook:disabled{
+	pointer-events: none;
+	cursor: default;
+	opacity: 0.6;
+}
+button.btn_returnBook:disabled{
+	pointer-events: none;
+	cursor: default;
+	opacity: 0.6;
+}
+button.btn_deleteBook:disabled{
+	pointer-events: none;
+	cursor: default;
+	opacity: 0.6;
+}
+button.btn_bulkRegist:disabled{
+	pointer-events: none;
+	cursor: default;
+	opacity: 0.6;
+}
 /* ここからaddbook */
 .add_book_content, .detail_book_content {
     justify-content: center;
@@ -214,22 +247,7 @@ a:hover, button:hover {
     display: flex;
     justify-content: center;
 }
-button.btn_addBook{
-background-color: #6699ff;
-}
-button.btn_rentBook{
-background-color: #FFA500; 
-}
-button.btn_returnBook{
-background-color: #6699ff;
-}
-button.btn_editBook{
-background-color: #00AC73;
-}
-.button.btn_bulkRegist{
-	    display: flex;
-    justify-content: center;
-}
+
 
 
 button.btn_addBook, button.btn_editBook, button.btn_deleteBook,button.btn_rentBook,button.btn_returnBook,button.btn_bulkRegist {

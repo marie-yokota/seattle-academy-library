@@ -1,5 +1,6 @@
 package jp.co.seattle.library.controller;
 
+import java.util.List;
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import jp.co.seattle.library.dto.BookInfo;
 import jp.co.seattle.library.service.BooksService;
 import jp.co.seattle.library.service.LendingService;
 
@@ -49,12 +51,17 @@ public class DeleteBookController {
         if (count == 0) {
             //削除メソッドを使用する
             booksService.deleteBook(bookId);
-            //新しい書籍リストを取得する
-            model.addAttribute("bookList", booksService.getBookList());
+            //リストないがからであるか確認
+            List<BookInfo> getedBookList = booksService.getBookList();
+            if (getedBookList.size() == 0) {
+                model.addAttribute("resultMessage", "登録されている書籍はありません");
+            } else {
+                model.addAttribute("bookList", getedBookList);
+            }
             //ホーム画面に遷移する
             return "home";
         } else {
-            model.addAttribute("errorDelete", "貸出中のため削除できません");
+
             //書籍情報を再取得する
             model.addAttribute("bookDetailsInfo", booksService.getBookInfo(bookId));
             //貸出ステータス
