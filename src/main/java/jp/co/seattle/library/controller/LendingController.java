@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import jp.co.seattle.library.dto.UsersLendingInfo;
 import jp.co.seattle.library.service.BooksService;
 import jp.co.seattle.library.service.LendingService;
 
@@ -34,6 +35,7 @@ public class LendingController {
      * 書籍を借りる
      * @param locale
      * @param bookId
+     * @param usersId
      * @param model
      * @return
      */
@@ -41,12 +43,19 @@ public class LendingController {
     @RequestMapping(value = "/rentBook", method = RequestMethod.POST)
     public String rentBook(Locale locale,
             @RequestParam("bookId") Integer bookId,
+            @RequestParam("usersId") Integer usersId,
             Model model) {
         // デバッグ用ログ
         logger.info("Welcome rentBook.java! The client locale is {}.", locale);
 
+        // パラメータで受け取った書籍情報をDtoに格納する。
+        UsersLendingInfo usersLendingInfo = new UsersLendingInfo();
+        usersLendingInfo.setBookId(bookId);
+        usersLendingInfo.setUsersId(usersId);
+        usersLendingInfo.setLendingStatus(1);
+
         //貸出登録
-        lendingService.LendingRegistration(bookId);
+        lendingService.LendingRegistration(usersLendingInfo);
         //貸出ステータス
         model.addAttribute("lendingStatus", "貸出中");
         //貸出情報の取得・再表示
@@ -66,11 +75,18 @@ public class LendingController {
     @RequestMapping(value = "/returnBook", method = RequestMethod.POST)
     public String returnBook(Locale locale,
             @RequestParam("bookId") Integer bookId,
+            @RequestParam("usersId") Integer usersId,
             Model model) {
         // デバッグ用ログ
         logger.info("Welcome returnBook.java! The client locale is {}.", locale);
+
+        // パラメータで受け取った書籍情報をDtoに格納する。
+        UsersLendingInfo usersLendingInfo = new UsersLendingInfo();
+        usersLendingInfo.setBookId(bookId);
+        usersLendingInfo.setUsersId(usersId);
+
         //返却登録
-        lendingService.deleteLending(bookId);
+        lendingService.deleteLending(usersLendingInfo);
         //貸出ステータス
         model.addAttribute("lendingStatus", "貸出可能");
         //貸出情報の取得・再表示

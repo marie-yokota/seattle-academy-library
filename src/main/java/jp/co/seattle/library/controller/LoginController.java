@@ -40,13 +40,14 @@ public class LoginController {
      * @param email メールアドレス
      * @param password パスワード
      * @param model
-     * @return　ホーム画面に遷移
+     * @return ホーム画面に遷移
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(
             @RequestParam("email") String email,
             @RequestParam("password") String password,
             Model model) {
+
 
         // 下記のコメントアウトを外してサービスクラスを使用してください。
         UserInfo selectedUserInfo = usersService.selectUserInfo(email, password);
@@ -63,7 +64,8 @@ public class LoginController {
         } else {
             model.addAttribute("bookList", getedBookList);
         }
-
+        int usersId = selectedUserInfo.getUsersId();
+        model.addAttribute("usersId", usersId);
         return "home";
     }
 }

@@ -174,7 +174,6 @@ public class EditController {
         // 書籍情報を更新する
         booksService.editBook(bookInfo);
 
-        //model.addAttribute("resultMessage", "登録完了");
 
         //更新した書籍の詳細情報を表示するように実装
 

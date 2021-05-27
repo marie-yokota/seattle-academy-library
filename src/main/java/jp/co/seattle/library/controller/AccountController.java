@@ -42,7 +42,7 @@ public class AccountController {
      * @param password パスワード
      * @param passwordForCheck 確認用パスワード
      * @param model
-     * @return　ホーム画面に遷移
+     * @return ホーム画面に遷移
      */
     @Transactional
     @RequestMapping(value = "/createAccount", method = RequestMethod.POST)
@@ -79,6 +79,9 @@ public class AccountController {
         userInfo.setPassword(password);
         usersService.registUser(userInfo);
 
+        //usersIdを取得する
+        int usersId = usersService.getUsersId();
+
         //リストないがからであるか確認
         List<BookInfo> getedBookList = booksService.getBookList();
         if (getedBookList.size() == 0) {
@@ -86,6 +89,7 @@ public class AccountController {
             return "home";
         }
         model.addAttribute("bookList", getedBookList);
+        model.addAttribute("usersId", usersId);
         return "home";
     }
 

@@ -16,6 +16,7 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="resources/js/lightbox.js" /></script>
 <script src="resources/js/bulkRegist.js" /></script>
+<script src="resources/js/sessionUsersId.js"/></script> 
 </head>
 <body class="wrapper">
     <header>

@@ -14,7 +14,7 @@ public class UserInfo {
 
     public static final String getUserId = null;
 
-    private int userId;
+    private int usersId;
 
     private String email;
 
@@ -26,8 +26,8 @@ public class UserInfo {
 
     }
 
-    public UserInfo(int userId, String email, String password, String passwordCheck) {
-        this.userId = userId;
+    public UserInfo(int usersId, String email, String password, String passwordCheck) {
+        this.usersId = usersId;
         this.email = email;
         this.password = password;
     }

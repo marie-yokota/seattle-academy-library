@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import jp.co.seattle.library.dto.UsersLendingInfo;
+
 @Service
 public class LendingService {
     final static Logger logger = LoggerFactory.getLogger(LendingService.class);
@@ -13,12 +15,13 @@ public class LendingService {
     private JdbcTemplate jdbcTemplate;
 
     /**
-     * 貸出登録をする
-     * 
-     * @param bookId 書籍ID
+     * 貸出登録をする lendingStatus=1
+     * @param usersLendingInfo
      */
-    public void LendingRegistration(int bookId) {
-        String sql = "INSERT INTO lending(booksid,reg_date) VALUES(" + bookId + ",sysdate())";
+    public void LendingRegistration(UsersLendingInfo usersLendingInfo) {
+        String sql = "INSERT INTO lending(BOOKS_ID,USERS_ID,LENDING_STATUS,REG_DATE,UPD_DATE) VALUES("
+                + usersLendingInfo.getBookId() + "," + usersLendingInfo.getUsersId() + ","
+                + usersLendingInfo.getLendingStatus() + ",sysdate(),sysdate())";
         jdbcTemplate.update(sql);
     }
 
@@ -28,19 +31,19 @@ public class LendingService {
      * @return countLendingId 
      */
     public int LendingConfirmation(int bookId) {
-        //mysqlの設定がID、BOOKSIDどちらも重複なしである。
         //countでデータの数を調べると1(対象がある)もしくは0(対象がない)となる。
-        String sql = "SELECT count(id) FROM lending where booksid =" + bookId;
+        String sql = "SELECT COUNT(LENDING_STATUS) FROM lending WHERE BOOKS_ID=" + bookId + " AND LENDING_STATUS = 1 ";
         int countLendingId = jdbcTemplate.queryForObject(sql, int.class);
         return countLendingId;
     }
 
     /**
-     * 返却をする=貸出テーブルの情報を削除する
-     * @param bookId
+     * 返却をする 貸出状況を0にする
+     * @param usersLendingInfo
      */
-    public void deleteLending(int bookId) {
-        String sql = "DELETE FROM lending WHERE booksid = " + bookId + ";";
+    public void deleteLending(UsersLendingInfo usersLendingInfo) {
+        String sql = "UPDATE lending SET LENDING_STATUS = 0 , UPD_DATE = SYSDATE() WHERE BOOKS_ID = "
+                + usersLendingInfo.getBookId() + " AND USERS_ID = " + usersLendingInfo.getUsersId() + ";";
         jdbcTemplate.update(sql);
     }
 }

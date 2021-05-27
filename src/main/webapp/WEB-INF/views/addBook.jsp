@@ -15,28 +15,21 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="resources/js/thumbnail.js"></script>
 <script src="resources/js/addBtn.js"></script>
+<script src="resources/js/sessionUsersId.js"/></script> 
 </head>
 <body class="wrapper">
-      
     <header>
-            
         <div class="left">
                   <img class="mark" src="resources/img/logo.png" />       
             <div class="logo">Seattle Library</div>
-                
         </div>
-            
         <div class="right">
-                  
             <ul>
                 <li><a href="<%=request.getContextPath()%>/home" class="menu">Home</a></li>
                 <li><a href="<%=request.getContextPath()%>/">ログアウト</a></li>
             </ul>
-                
         </div>
-          
     </header>
-      
     <main>
         <form action="<%=request.getContextPath()%>/insertBook" method="post" enctype="multipart/form-data" id="data_upload_form">
             <h1>書籍の追加</h1>

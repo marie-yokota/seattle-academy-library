@@ -55,4 +55,14 @@ public class UsersService {
 
     }
 
+    /**
+     * usersIdを取得する
+     * @return usersId 
+     */
+    public int getUsersId() {
+        String sql = "SELECT MAX(id) FROM users";
+        int usersId = jdbcTemplate.queryForObject(sql, int.class);
+        return usersId;
+    }
+
 }

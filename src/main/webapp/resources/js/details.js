@@ -1,5 +1,5 @@
 /**
- *　detail.jsp内での動作
+ * detail.jsp内での動作
  *
  */
 

@@ -137,10 +137,10 @@ public class AddBooksController {
 
         if (!StringUtils.isEmpty(isbn)) { //ISBNにデータが入っているか
             if (!isIsbnVaild) { //数字でない場合
-                model.addAttribute("errorIsbn", "①ISBNは10桁または13桁の数字を入力してください");
+                model.addAttribute("errorIsbn", "ISBNは10桁または13桁の数字を入力してください");
                 return "addBook";
             } else if (!(isbn.length() == 13) || !(isbn.length() == 10)) { //桁でない場合が真
-                model.addAttribute("errorIsbn", "②ISBNは10桁または13桁の数字を入力してください");
+                model.addAttribute("errorIsbn", "ISBNは10桁または13桁の数字を入力してください");
                     return "addBook";
             }
         }
