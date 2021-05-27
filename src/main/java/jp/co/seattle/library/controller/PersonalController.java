@@ -30,11 +30,11 @@ public class PersonalController {
             @RequestParam("usersId") int usersId,
             Model model) {
         //usersIdに紐づく、貸出中の時のリストの取得
-        List<UsersLendingInfo> getedLendingBookList = usersLendingHistoryService.UsersLendingBookList(usersId);
+        List<UsersLendingInfo> getedLendingBookList = usersLendingHistoryService.usersLendingBookList(usersId);
         model.addAttribute("getedLendingBookList", getedLendingBookList);
 
         //usersIdに紐づく、貸出可の時のリストの取得
-        List<UsersLendingInfo> getedHistoryBookList = usersLendingHistoryService.UsersHistoryBookList(usersId);
+        List<UsersLendingInfo> getedHistoryBookList = usersLendingHistoryService.usersHistoryBookList(usersId);
         model.addAttribute("getedHistoryBookList", getedHistoryBookList);
         return "personal";
     }

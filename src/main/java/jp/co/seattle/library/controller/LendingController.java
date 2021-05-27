@@ -52,7 +52,6 @@ public class LendingController {
         UsersLendingInfo usersLendingInfo = new UsersLendingInfo();
         usersLendingInfo.setBookId(bookId);
         usersLendingInfo.setUsersId(usersId);
-        usersLendingInfo.setLendingStatus(1);
 
         //貸出登録
         lendingService.LendingRegistration(usersLendingInfo);

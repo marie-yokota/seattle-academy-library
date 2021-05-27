@@ -20,8 +20,7 @@ public class LendingService {
      */
     public void LendingRegistration(UsersLendingInfo usersLendingInfo) {
         String sql = "INSERT INTO lending(BOOKS_ID,USERS_ID,LENDING_STATUS,REG_DATE,UPD_DATE) VALUES("
-                + usersLendingInfo.getBookId() + "," + usersLendingInfo.getUsersId() + ","
-                + usersLendingInfo.getLendingStatus() + ",sysdate(),sysdate())";
+                + usersLendingInfo.getBookId() + "," + usersLendingInfo.getUsersId() + ",1,sysdate(),sysdate())";
         jdbcTemplate.update(sql);
     }
 
