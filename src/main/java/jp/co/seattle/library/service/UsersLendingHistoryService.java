@@ -25,7 +25,7 @@ public class UsersLendingHistoryService {
      * @param usersLendingInfo 
      * @return lendingTBLに紐づいた貸出中の時の、貸出情報と書籍情報
      */
-    public List<UsersLendingInfo> usersLendingBookList(int usersId) {
+    public List<UsersLendingInfo> getUsersLendingBookList(int usersId) {
         String sql = "SELECT lending.id,lending.reg_date,lending.upd_date,lending.books_id,books.title,books.author,books.publisher,books.publish_date,books.thumbnail_name,books.thumbnail_url FROM lending JOIN books ON lending.books_id = books.id where lending.USERS_ID ="
                 + usersId + " and lending_status = 1 ORDER BY lending.reg_date DESC;";
         List<UsersLendingInfo> getedLendingBookList = jdbcTemplate.query(sql, new UsersLendingInfoRowMapper());
@@ -38,7 +38,7 @@ public class UsersLendingHistoryService {
      * @param usersLendingInfo
      * @return lendingTBLに紐づいた貸出中の時の、貸出情報と書籍情報
      */
-    public List<UsersLendingInfo> usersHistoryBookList(int usersId) {
+    public List<UsersLendingInfo> getUsersHistoryBookList(int usersId) {
         String sql = "SELECT lending.id,lending.reg_date,lending.upd_date,lending.books_id,books.title,books.author,books.publisher,books.publish_date,books.thumbnail_name,books.thumbnail_url FROM lending JOIN books ON lending.books_id = books.id where lending.USERS_ID = "
                 + usersId + " and lending_status = 0 ORDER BY lending.upd_date DESC;";
         List<UsersLendingInfo> getedHistoryBookList = jdbcTemplate.query(sql, new UsersLendingInfoRowMapper());

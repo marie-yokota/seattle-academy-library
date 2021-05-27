@@ -45,7 +45,7 @@ public class BooksService {
      * 書籍IDに紐づく書籍詳細情報を取得する
      *
      * @param bookId 書籍ID
-     * @return 書籍情報
+     * @return bookDetailsInfo 書籍詳細情報
      */
     public BookDetailsInfo getBookInfo(int bookId) {
 
@@ -62,7 +62,7 @@ public class BooksService {
      * 書籍IDを取得する
      * 
      * 
-     * @return bookId
+     * @return bookId 書籍ID
      */
     public int getBookId() {
         String sql = "SELECT id FROM books ORDER BY id DESC LIMIT 1;";
@@ -93,7 +93,7 @@ public class BooksService {
 
     /**
      * 書籍を削除する
-     * @param bookId 書籍情報
+     * @param bookId 書籍ID
      */
     public void deleteBook(int bookId) {
         String sql = "DELETE FROM books WHERE id = " + bookId + ";";
@@ -103,7 +103,7 @@ public class BooksService {
     /**
      * 書籍情報を更新する
      * 
-     * @param bookInfo
+     * @param bookInfo 書籍情報
      */
     public void editBook(BookDetailsInfo bookInfo) {
         String sql = "UPDATE books SET title = '" + bookInfo.getTitle() +

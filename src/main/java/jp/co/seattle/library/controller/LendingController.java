@@ -34,8 +34,8 @@ public class LendingController {
     /**
      * 書籍を借りる
      * @param locale
-     * @param bookId
-     * @param usersId
+     * @param bookId 書籍ID
+     * @param usersId ユーザーID
      * @param model
      * @return
      */
@@ -66,7 +66,7 @@ public class LendingController {
     /**
      * 書籍を返却する
      * @param locale
-     * @param bookId
+     * @param bookId 書籍ID
      * @param model
      * @return
      */

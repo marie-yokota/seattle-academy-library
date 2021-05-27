@@ -46,11 +46,11 @@ public class DeleteBookController {
         //削除メソッドを使用する
         booksService.deleteBook(bookId);
         //リストないがからであるか確認
-        List<BookInfo> getedBookList = booksService.getBookList();
-        if (getedBookList.size() == 0) {
+        List<BookInfo> bookList = booksService.getBookList();
+        if (bookList.size() == 0) {
             model.addAttribute("resultMessage", "登録されている書籍はありません");
         } else {
-            model.addAttribute("bookList", getedBookList);
+            model.addAttribute("bookList", bookList);
         }
         //ホーム画面に遷移する
         return "home";

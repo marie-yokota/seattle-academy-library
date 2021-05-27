@@ -129,23 +129,16 @@ public class AddBooksController {
                 model.addAttribute("errorPublishDate", "有効な日にちを入力してください");
                 return "addBook";
             }
-
         }
 
         //ISBNが10桁または13桁の半角数字であるか確認
-        boolean isIsbnVaild = isbn.matches("^^([0-9]{10}|[0-9]{13})+$");
+        boolean isIsbnVaild = isbn.matches("^([0-9]{10}||[0-9]{13})$");
 
-        if (!StringUtils.isEmpty(isbn)) { //ISBNにデータが入っているか
-            if (!isIsbnVaild) { //数字でない場合
+        if (!StringUtils.isEmpty(isbn) && !isIsbnVaild) { //ISBNにデータが入っていない場合の処理
                 model.addAttribute("errorIsbn", "ISBNは10桁または13桁の数字を入力してください");
                 return "addBook";
-            } else if (!(isbn.length() == 13) || !(isbn.length() == 10)) { //桁でない場合が真
-                model.addAttribute("errorIsbn", "ISBNは10桁または13桁の数字を入力してください");
-                    return "addBook";
-            }
         }
         
-
         // 書籍情報を新規登録する
         booksService.registBook(bookInfo);
         //登録した書籍の詳細情報を表示するように実装

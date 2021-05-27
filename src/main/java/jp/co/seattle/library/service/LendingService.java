@@ -8,6 +8,11 @@ import org.springframework.stereotype.Service;
 
 import jp.co.seattle.library.dto.UsersLendingInfo;
 
+/**
+ * lendingテーブルに関する処理を実装する
+ *
+ * 
+ */
 @Service
 public class LendingService {
     final static Logger logger = LoggerFactory.getLogger(LendingService.class);
@@ -15,7 +20,7 @@ public class LendingService {
     private JdbcTemplate jdbcTemplate;
 
     /**
-     * 貸出登録をする lendingStatus=1
+     * 貸出登録をする (貸出状況)lendingStatus=1
      * @param usersLendingInfo
      */
     public void LendingRegistration(UsersLendingInfo usersLendingInfo) {
@@ -37,7 +42,7 @@ public class LendingService {
     }
 
     /**
-     * 返却をする 貸出状況を0にする
+     * 返却をする (貸出状況)lendingStatus=0
      * @param usersLendingInfo
      */
     public void deleteLending(UsersLendingInfo usersLendingInfo) {
