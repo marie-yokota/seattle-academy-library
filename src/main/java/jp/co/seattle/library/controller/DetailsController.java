@@ -45,12 +45,12 @@ public class DetailsController {
 
         //貸出状況を確認とフロントに表示
         int count = lendingService.LendingConfirmation(bookId);
-        if (count == 1) {//貸出中の時
-            //貸出ステータス
-            model.addAttribute("lendingStatus", "貸出中");
-        } else {//貸出可能の時
+        if (count == 0) {//貸出中の時
             //貸出ステータス
             model.addAttribute("lendingStatus", "貸出可能");
+        } else {//貸出可能の時
+            //貸出ステータス
+            model.addAttribute("lendingStatus", "貸出中");
         }
         return "details";
     }

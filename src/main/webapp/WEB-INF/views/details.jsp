@@ -16,6 +16,7 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="resources/js/lightbox.js" /></script>
 <script src="resources/js/details.js" /></script>
+<script src="resources/js/sessionUsersId.js" /></script>
 </head>
 <body class="wrapper">
     <header>
@@ -77,9 +78,11 @@
         </div>
         <div class="edtDelBookBtn_box">
             <form method="post" action="<%=request.getContextPath()%>/rentBook">
+                <input class="usersId" type="hidden" name="usersId" value="${usersId}">
                 <button id=btn_rentBook type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_rentBook">借りる</button>
             </form>
             <form method="post" action="<%=request.getContextPath()%>/returnBook">
+                <input class="usersId" type="hidden" name="usersId" value="${usersId}">
                 <button id=btn_returnBook type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_returnBook">返す</button>
             </form>
             <form method="post" action="<%=request.getContextPath()%>/editBook">
@@ -89,6 +92,7 @@
                 <button id=btn_deleteBook type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_deleteBook">削除</button>
             </form>
         </div>
+         
     </main>
 </body>
 </html>
